@@ -6,7 +6,7 @@
 	#inputvaluer{
 		text-align:center;
 		width:100%;
-		height:50px;
+		height:100%
 	}
 	body{
 		color:white;
@@ -29,10 +29,29 @@
 		color:white;
 		float:top;
 	}
-.button-30 {
-	margin-top:5px;
+#slidermaker{
+	
 	margin-left:5%;
 	width:90%;
+}
+nav{
+width:80%;
+height:50px;
+float:left;
+margin-bottom:10px;
+}
+article{
+	width:10%;
+	height:25px;
+	float:left;
+}
+#guzik{
+	width:97%;
+	height:90%;
+	margin-left:10px;
+	margin-top:3px;
+}
+.button-30 {
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
@@ -49,8 +68,6 @@
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -106,8 +123,23 @@
 	</style>
 	</head>
 	<body>
+	<nav>
 	<input type="input" id="inputvaluer" placeholder="Input a number you want to ratio"></input><br>
-	<input type="button" class="button-30"id="slidermaker" value="Add a Slider"></input><br>
+	</nav>
+	<article>
+	<input type="button" class="button-30" id="guzik" value="64"</input><br>
+	</article>
+	<article>
+	<input type="button" class="button-30" id="guzik" value="100"></input><br>
+	</article>
+	<article>
+	<input type="button" class="button-30" id="guzik" value="144"></input><br>
+	</article>
+	<article>
+	<input type="button" class="button-30" id="guzik" value="X2"</input><br>
+	</article>
+	<main>
+	<input type="button" class="button-30" id="slidermaker" value="Add a Slider"></input><br>
 	<script>
 	let language = navigator.language;
 	let dashIndex = language.indexOf('-');
@@ -115,27 +147,45 @@
     language = language.substring(0, dashIndex);
 	}
 
-	switch (language) {
+				switch (language) {
                 case 'en' :
-                document.getElementById("inputvaluer").placeholder =  "Input a number you want to ratio";
-				document.getElementById("slidermaker").innerText =  "Add a Slider";
+				document.getElementById("slidermaker").value =  "Add a Slider";
+				document.getElementById("inputvaluer").placeholder =  "Input a number you want to ratio";
                 break;
                 case 'pl' :
+                document.getElementById("slidermaker").value =  "Dodaj Suwak";
 				document.getElementById("inputvaluer").placeholder =  "Wpisz liczbę z której chcesz procent";
-                document.getElementById("slidermaker").innerText =  "Dodaj Suwak";
                 
                 }
 				
 				
 	inputs=0;
+	inputek=document.getElementById("inputvaluer");
 	SliderMaker = document.getElementById("slidermaker");
+	Guziki = document.getElementsByTagName("input");
+	Array.from(Guziki).forEach(function(guzik){
+		if(guzik.id="guzik")
+		{
+			guzik.onclick=function(){
+				if(guzik.value!="X2")
+				{
+					inputek.value=(inputek.value*1)+(guzik.value*1);
+				}else{
+					inputek.value=(inputek.value*1)*2;
+				}
+				slidery=document.getElementsByClassName("sliderek")
+				Array.from(slidery).forEach(function(slider) {
+				document.getElementsByClassName("p2")[(slider.id)-1].innerText=Math.round((inputek.value/100)*slider.value)
+				})
+			}
+		}
+	})
 
 	SliderMaker.onclick=function(){
 		inputs++;
 		var div = document.createElement('div');
-		document.body.appendChild(div);
+		document.getElementsByTagName("main")[0].appendChild(div);
 		var slider = document.createElement('input');
-		inputek=document.getElementById("inputvaluer");
 		slidery=document.getElementsByClassName("sliderek")
 		slider.id = "volume";
 		slider.type = 'range';
@@ -171,8 +221,9 @@
 		p.after(p2);
 		
 		var br = document.createElement('br');
-        document.body.appendChild(br);
+        document.getElementsByTagName("main")[0].appendChild(br);
 	}
 	</script>
+	</main>
 	</body>
 </html>
