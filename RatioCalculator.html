@@ -109,6 +109,24 @@
 	<input type="input" id="inputvaluer" placeholder="Input a number you want to ratio"></input><br>
 	<input type="button" class="button-30"id="slidermaker" value="Add a Slider"></input><br>
 	<script>
+	let language = navigator.language;
+	let dashIndex = language.indexOf('-');
+	if (dashIndex >= 0) {
+    language = language.substring(0, dashIndex);
+	}
+
+	switch (language) {
+                case 'en' :
+                document.getElementById("inputvaluer").placeholder =  "Input a number you want to ratio";
+				document.getElementById("slidermaker").innerText =  "Add a Slider";
+                break;
+                case 'pl' :
+				document.getElementById("inputvaluer").placeholder =  "Wpisz liczbę z której chcesz procent";
+                document.getElementById("slidermaker").innerText =  "Dodaj Suwak";
+                
+                }
+				
+				
 	inputs=0;
 	SliderMaker = document.getElementById("slidermaker");
 
