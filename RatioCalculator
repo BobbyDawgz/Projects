@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<style>
+	#inputvaluer{
+		text-align:center;
+		width:100%;
+		height:50px;
+	}
+	body{
+		color:white;
+		background-color:black;
+	}
+	div{
+		padding:0px;
+		margin:5px;
+		text-align:center;
+	}
+	p{
+		font-size:25px;
+		color:white;
+
+		padding:0px;
+		margin:0px;
+	}
+	.p2{
+		font-size:25px;
+		color:white;
+		float:top;
+	}
+.button-30 {
+	margin-top:5px;
+	margin-left:5%;
+	width:90%;
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+/* The slider itself */
+.sliderek {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.sliderek:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.sliderek::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: #FFF; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+	</style>
+	</head>
+	<body>
+	<input type="input" id="inputvaluer" placeholder="Input a number you want to ratio"></input><br>
+	<input type="button" class="button-30"id="slidermaker" value="Add a Slider"></input><br>
+	<script>
+	inputs=0;
+	SliderMaker = document.getElementById("slidermaker");
+
+	SliderMaker.onclick=function(){
+		inputs++;
+		var div = document.createElement('div');
+		document.body.appendChild(div);
+		var slider = document.createElement('input');
+		inputek=document.getElementById("inputvaluer");
+		slidery=document.getElementsByClassName("sliderek")
+		slider.id = "volume";
+		slider.type = 'range';
+		slider.min = 0;
+		slider.max = 100;
+		slider.value = 100;
+		slider.id=inputs
+		slider.className="sliderek"
+			slider.oninput=function(){
+			document.getElementsByClassName("p")[(this.id)-1].innerText=this.value+"%"
+				suma=0;
+				Array.from(slidery).forEach(function(slider) {
+				suma+=slider.value*1;
+				
+				document.getElementsByClassName("p2")[(slider.id)-1].innerText=Math.round((inputek.value/100)*slider.value)
+				});
+				console.log(suma);
+			
+			}
+		div.appendChild(slider);
+		inputek.oninput=function(){
+			Array.from(slidery).forEach(function(slider) {
+			document.getElementsByClassName("p2")[(slider.id)-1].innerText=Math.round((inputek.value/100)*slider.value)
+			})
+		}
+		var p = document.createElement('p');
+		p.className="p"
+		p.innerText="100%"
+		div.appendChild(p);
+		var p2 = document.createElement('p');
+		p2.className="p2"
+		p2.innerText="0"
+		p.after(p2);
+		
+		var br = document.createElement('br');
+        document.body.appendChild(br);
+	}
+	</script>
+	</body>
+</html>
